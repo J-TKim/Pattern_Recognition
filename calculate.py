@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 import math
 
 
-def calculate_roundness(image_path):
+def calculate_roundness(image_path, *, radius):
     img = cv2.imread(image_path)
 
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
