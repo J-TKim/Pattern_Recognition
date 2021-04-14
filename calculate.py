@@ -57,6 +57,12 @@ def calculate_roundness(image_path):
     epsilon = 0.001 * cv2.arcLength(cnt, True)
     approx = cv2.approxPolyDP(cnt, epsilon, True)
 
+    idx = 0
+    for cnt in contours:
+        idx += 1
+        x, y, w, h = cv2.boundingRect(cnt)
+        roi = img[y:y + h, x:x + w]
+
     (x, y), radius = cv2.minEnclosingCircle(cnt)
     center = (int(x), int(y))
     radius = int(radius)
@@ -65,4 +71,4 @@ def calculate_roundness(image_path):
     A_c = radius ** 2 * math.pi
 
     R = A_p / A_c * 100
-    return R, radius
+    return R, radius, w, h
