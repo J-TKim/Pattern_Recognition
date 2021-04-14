@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 import math
 
 
-def calculate_roundness(image_path, *, radius):
+def calculate_roundness(image_path):
     img = cv2.imread(image_path)
 
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -56,6 +56,10 @@ def calculate_roundness(image_path, *, radius):
 
     epsilon = 0.001 * cv2.arcLength(cnt, True)
     approx = cv2.approxPolyDP(cnt, epsilon, True)
+
+    (x, y), radius = cv2.minEnclosingCircle(cnt)
+    center = (int(x), int(y))
+    radius = int(radius)
 
     A_p = area
     A_c = radius ** 2 * math.pi
