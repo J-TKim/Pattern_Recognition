@@ -71,4 +71,4 @@ def calculate_roundness(image_path):
     A_c = radius ** 2 * math.pi
 
     R = A_p / A_c * 100
-    return R, radius, w, h
+    return R, radius, w, h, A_p
